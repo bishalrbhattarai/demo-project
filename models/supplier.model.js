@@ -32,18 +32,6 @@ const SupplierSchema = new mongoose.Schema(
       country: { type: String, required: true },
     },
 
-    taxId: {
-      type: String, // VAT/GST or similar
-    },
-
-    paymentTerms: {
-      type: String, // e.g., "Net 30", "COD", "Advance"
-    },
-
-    notes: {
-      type: String,
-    },
-
     isActive: {
       type: Boolean,
       default: true,

@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const StockSchema = new mongoose.Schema(
+const StockMovementSchema = new mongoose.Schema(
   {
     productId: {
       type: mongoose.Schema.Types.ObjectId,
@@ -19,21 +19,35 @@ const StockSchema = new mongoose.Schema(
     warehouseId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Warehouse",
+      required: true,
+    },
+
+    movementType: {
+      type: String,
+      enum: [
+        "purchase_in",
+        "sale_out",
+        "return_in",
+        "adjustment_in",
+        "adjustment_out",
+        "transfer_in",
+        "transfer_out",
+      ],
+      required: true,
+      index: true,
     },
 
     quantity: {
       type: Number,
-      default: 0,
       required: true,
     },
 
-
-    minStockLevel: {
-      type: Number,
-      default: 0,
+    performedBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
     },
   },
   { timestamps: true }
 );
 
-export default mongoose.model("Stock", StockSchema);
+export default mongoose.model("StockMovement", StockMovementSchema);
