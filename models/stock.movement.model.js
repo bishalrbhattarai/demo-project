@@ -42,10 +42,6 @@ const StockMovementSchema = new mongoose.Schema(
       required: true,
     },
 
-    performedBy: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-    },
   },
   { timestamps: true }
 );
